@@ -1,5 +1,5 @@
 function showpas() {
-    var x = document.getElementById("pname");
+    var x = document.getElementById("password");
     if (x.type === "password") {
         x.type = "text";
     } else {
@@ -7,24 +7,36 @@ function showpas() {
     }
 }
 function val() {
-    var x1 = document.forms["x"]["fname1"].value;
-    var latter = /^[a-zA-Z0-9_.-]*$/;
-    if (!x1.match(latter)) {
-        alert("Enter velid user name");
+    event.preventDefault();
+    var username = document.getElementById('username').value.trim();
+    var password = document.getElementById('password').value.trim();
+    usernameError.innerHTML = "";
+    passwordError.innerHTML = "";
+    if (username === "") {
+        usernameError.innerHTML = "Username is required ";
+        return;
+    } 
+    if (password === "") {
+        passwordError.innerHTML = "Password is required ";
+        return;
     }
-        fetch('/signup' , {
-    method: "POST",
-    headers: {
-        "Content-Type": "application/json",
-    },
-    body : JSON.stringify({ username,password }),
-    })
-    .then((r) => {r.json()})
-    .then((data) => {
-        console.log(data);
-        window.location.href = '/index1';
-    })
-    .catch(error => {
-        console.error('There was a problem with the fetch operation:', error);
-    });
+    fetch("/login", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({username,password}),
+        })
+        .then((r) =>{return r.json()})
+        .then((data) => {
+            if(data.txt!="sucess") {
+                alert(data.txt);
+                return;
+            }
+            else window.location.href = '/index1';
+        })
+        .catch((error) => {
+          console.log(error);
+          alert("An error occurred. Please try again later.");
+        });
 }

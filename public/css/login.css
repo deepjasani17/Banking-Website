@@ -76,3 +76,7 @@ input:focus {
     -webkit-box-shadow: 0 0 10px rgb(81, 188, 255);
     box-shadow: 0 0 10px rgb(81, 188, 255);
 }
+
+.error{
+    color: red;
+}

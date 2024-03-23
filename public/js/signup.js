@@ -105,9 +105,10 @@ function val() {
         },
         body : JSON.stringify({ firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword }),
         })
-        .then((r) => {r.json()})
-          .then((data) => {
-            console.log(data);
+        .then((r) => {return r.json()})
+        .then((data) => {
+            alert(data.txt);
+            if(data.txt != 'Sign up succesfull, Try to log in now' ) return;
             window.location.href = '/login';
         })
         .catch(error => {
@@ -132,6 +133,7 @@ function isValidUsername(username){
 }
 
 function isValidPassword(password){
-    var passwordRegex = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
-    return passwordRegex.test(password);
+    // var passwordRegex = /^[a-zA-Z0-9!@#$%^&*]{8,16}$/;
+    // return passwordRegex.test(password);
+    return true;
 }

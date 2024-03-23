@@ -1,12 +1,14 @@
 const express = require('express');
 const path = require("path");
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 require("./db/conn");
 const Register = require("./models/reg");
+const { error } = require('console');
 
 
 const path1 = path.join(__dirname,"../public");
@@ -18,6 +20,11 @@ app.use(express.static(path1));
 app.set("view engine",'hbs');
 app.engine('hbs', require('hbs').__express);
 
+app.use(session({
+    secret: 'hello',
+    resave: false,
+    saveUninitialized: true
+  }));
 
 app.get("/" , (req,res) => {
     res.render("index")
@@ -38,6 +45,18 @@ app.use(bodyParser.json());
 app.post("/signup" , async (req,res)=>{
     try {
         const { firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword } = req.body;
+        const collections = await Register.find({}).lean();
+        for (const collection of collections) {
+            if (collection.email === email) {
+                return res.json({ txt: 'This email is already taken, try with another!' });
+            }
+            if (collection.phone === mobileNumber) {
+                return res.json({ txt: 'This mobile number is already taken, try with another!' });
+            }
+            if (collection.username === username) {
+                return res.json({ txt: 'This username is already taken, try with another!' });
+            }
+        }
         const registeruser = new Register({
             firstname:req.body.firstName,
             lastname:req.body.lastName,
@@ -48,36 +67,41 @@ app.post("/signup" , async (req,res)=>{
             password:req.body.password,
             confirmpassword:req.body.confirmPassword,
         })
-
         const data = await registeruser.save();
-        res.json({message:'Data received successfully'});
-            
+        res.json({txt:'Sign up succesfull, Try to log in now'});
     } catch (error) {
         console.log(error);
-        res.status(400).send({ error: `There is some error try again !!` });
+        res.json({txt:"Internal server error"})
     }
 })
 
 app.post("/login" , async(req,res) => {
-    try{
-        const {username,password} = req.body;
-        const use =  await Register.findOne({username})
-        if(use.password === password)
+    try {
+        const { username, password } = req.body;
+        const user = await Register.findOne({username});
+        for(var i=0;i<1;i++)
         {
-            res.status(201).render("index1" , {use})
+            if (!user) {
+                return res.json({ txt: "Username not found" });
+            }
+            if (user.password !== password) {
+                return res.json({ txt: "Invalid password" });
+            } 
+            
         }
-        else{
-            res.send("Invalid !!");
-        }
-    } catch(err){
-        res.status(400).send("invalid")
+        req.session.user = user;
+        res.json({txt:"sucess"})
+    } catch (err) {
+        console.error(err);
+        res.json({ txt: "Internal server error" });
     }
 });
 
 
 app.get("/index1" , (req,res) => {
     try {
-        res.render("index1")
+        const user = req.session.user;
+        res.render("index1", { user });
     } catch (error) {
         console.log(error);
     }

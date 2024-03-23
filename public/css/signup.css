@@ -3,6 +3,12 @@
     margin: 0;
     padding: 0;
 }
+body{
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 footer {
     background-color: #333;
     color: #fff;
@@ -47,8 +53,6 @@ button:hover{
     padding: 10px;
     width: 360px;
     margin: 55px;
-    margin-left: 590px;
-    margin-top: 50px;
     border-radius: 5px;
 }
 

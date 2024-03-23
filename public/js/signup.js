@@ -108,7 +108,7 @@ function val() {
         .then((r) => {r.json()})
           .then((data) => {
             console.log(data);
-            window.location.href = '/index1';
+            window.location.href = '/login';
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);

@@ -6,118 +6,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.0/css/all.min.css">
 	<title>Registration form</title>
-	<style>
-		* {
-			box-sizing: border-box;
-			margin: 0;
-			padding: 0;
-		}
-		body{
-			height: 100vh;
-			display: flex;
-			justify-content: center;
-			align-items: center;
-		}
-
-		.a {
-			width: 100%;
-			height: 43.7vh;
-			display: block;
-			background-color: rgb(85, 88, 91);
-			margin-right: 50px;
-			border: 1px solid rgb(47, 51, 55);
-			border-style: solid;
-		}
-
-		footer p {
-			font-size: 14px;
-			margin: 0;
-		}
-
-		button {
-			background-color: rgb(99, 192, 251);
-			color: black;
-			margin: auto;
-			border-radius: 3px;
-			padding: 5px;
-			border: solid;
-			border-width: 1px;
-			cursor: pointer;
-			width: 100px;
-			font-size: small;
-			width: 100%;
-			height: 35px;
-		}
-		button:hover{
-			background: rgb(81, 188, 255);
-		}
-		.reg {
-			border: 1px solid #ccc;
-			padding: 10px;
-			width: 360px;
-			margin: 55px;
-
-			border-radius: 5px;
-		}
-
-		.inreg {
-			padding: 15px;
-		}
-
-		td {
-			padding: 0 10px;
-		}
-
-		input {
-			width: 100%;
-			padding: 9px;
-			margin: 7px 0;
-			box-sizing: border-box;
-			border: 1px solid #ccc;
-			border-radius: 3px;
-			-webkit-transition: 0.5s;
-			transition: 0.5s;
-			outline: none;
-		}
-
-		input:focus {
-			border: 1px solid rgb(81, 188, 255);
-			-webkit-box-shadow: 0 0 10px rgb(81, 188, 255);
-			box-shadow: 0 0 10px rgb(81, 188, 255);
-		}
-	</style>
-	<script>
-		function showpas() {
-			var x = document.getElementById("pname");
-			if (x.type === "password") {
-				x.type = "text";
-			} else {
-				x.type = "password";
-			}
-		}
-		function val() {
-			var x1 = document.forms["x"]["fname1"].value;
-			var latter = /^[a-zA-Z0-9_.-]*$/;
-			if (!x1.match(latter)) {
-				alert("Enter velid user name");
-			}
-			    fetch('/signup' , {
-			method: "POST",
-			headers: {
-				"Content-Type": "application/json",
-			},
-			body : JSON.stringify({ username,password }),
-			})
-			.then((r) => {r.json()})
-			.then((data) => {
-				console.log(data);
-				window.location.href = '/index1';
-			})
-			.catch(error => {
-				console.error('There was a problem with the fetch operation:', error);
-			});
-		}
-	</script>
+	<link rel="stylesheet" href="css/login.css">
 </head>
 
 <body>
@@ -138,6 +27,7 @@
 		</div>
 	</div>
 	</form>
+	<script src="js/login.js"></script>
 </body>
 
 </html>

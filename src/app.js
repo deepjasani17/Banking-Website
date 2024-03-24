@@ -2,23 +2,28 @@ const express = require('express');
 const path = require("path");
 const bodyParser = require('body-parser');
 const session = require('express-session');
+const hbs = require("hbs");
 
 const app = express();
 const port = process.env.PORT || 3000;
 
 require("./db/conn");
 const Register = require("./models/reg");
-const { error } = require('console');
+const { log } = require('console');
 
 
 const path1 = path.join(__dirname,"../public");
+const path2 = path.join(__dirname,"/views");
+const path3 = path.join(__dirname,"/partials");
+console.log(__dirname);
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 
 app.use(express.static(path1));
-// app.set('view engine', 'ejs');
-app.set("view engine",'hbs');
-app.engine('hbs', require('hbs').__express);
+app.set("view engine", "hbs"); 
+app.set("views", path2); 
+
+hbs.registerPartials(path3);
 
 app.use(session({
     secret: 'hello',

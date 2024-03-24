@@ -2,13 +2,9 @@
     box-sizing: border-box;
     margin: 0;
     padding: 0;
+    font-family: 'Urbanist', sans-serif;
 }
-body{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
+
 footer {
     background-color: #333;
     color: #fff;
@@ -34,7 +30,6 @@ footer p {
 button {
     background-color: rgb(99, 192, 251);
     color: black;
-    margin: auto;
     border-radius: 3px;
     padding: 5px;
     border: solid;
@@ -48,20 +43,18 @@ button {
 button:hover{
     background: rgb(99, 192, 251);
 }
+
+.outer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .reg {
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 25px;
     width: 360px;
-    margin: 55px;
+    margin:55px;
     border-radius: 5px;
-}
-
-.inreg {
-    padding: 15px;
-}
-
-td {
-    padding: 0 10px;
 }
 
 .in {

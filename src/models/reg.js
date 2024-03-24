@@ -18,6 +18,9 @@ const Scema = new mongoose.Schema({
         required:true,
         unique:true
     },
+    countrycode:{
+        typr:String,
+    },
     phone:{
         type:String,
         required:true,

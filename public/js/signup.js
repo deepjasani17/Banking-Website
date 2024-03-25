@@ -19,8 +19,7 @@ function val() {
     var firstName = document.getElementById('firstName').value.trim();
     var lastName = document.getElementById('lastName').value.trim();
     var email = document.getElementById('email').value.trim();
-    var countryCode = phoneInput.getSelectedCountryData().dialCode;
-    // console.log(countryCode);
+    // var countryCode = phoneInput.getSelectedCountryData().dialCode;
     var mobileNumber = document.getElementById('mobileNumber').value.trim();
     var username = document.getElementById('username').value.trim();
     var password = document.getElementById('password').value.trim();
@@ -33,7 +32,6 @@ function val() {
     var usernameError = document.getElementById('usernameError');
     var passwordError = document.getElementById('passwordError');
     var confirmPasswordError = document.getElementById('confirmPasswordError');
-    // Resetting errors
     firstNameError.innerHTML = "";
     lastNameError.innerHTML = "";
     genderError.innerHTML = "";
@@ -146,7 +144,9 @@ function isValidEmail(email) {
 }
 
 function isValidMobileNumber() {
-    return true;
+    const isValidMobile = phoneInput.isValidNumber(true);
+    if(isValidMobile) return true;
+    else return false;
 }
 
 

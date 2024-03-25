@@ -19,7 +19,8 @@ function val() {
     var firstName = document.getElementById('firstName').value.trim();
     var lastName = document.getElementById('lastName').value.trim();
     var email = document.getElementById('email').value.trim();
-    // var countryCode = phoneInput.getSelectedCountryData().dialCode;
+    const countryData = phoneInput.getSelectedCountryData();
+    var country = countryData.name;
     var mobileNumber = document.getElementById('mobileNumber').value.trim();
     var username = document.getElementById('username').value.trim();
     var password = document.getElementById('password').value.trim();
@@ -114,7 +115,7 @@ function val() {
           headers: {
             "Content-Type": "application/json",
         },
-        body : JSON.stringify({ firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword }),
+        body : JSON.stringify({ firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,country }),
         })
         .then((r) => {return r.json()})
         .then((data) => {

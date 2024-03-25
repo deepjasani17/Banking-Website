@@ -49,7 +49,7 @@ app.use(bodyParser.json());
 
 app.post("/signup" , async (req,res)=>{
     try {
-        const { firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword } = req.body;
+        const { firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,country } = req.body;
         const collections = await Register.find({}).lean();
         for (const collection of collections) {
             if (collection.email === email) {
@@ -68,6 +68,7 @@ app.post("/signup" , async (req,res)=>{
             gender:req.body.gender,
             email:req.body.email,
             phone:req.body.mobileNumber,
+            country:req.body.country,
             username:req.body.username,
             password:req.body.password,
             confirmpassword:req.body.confirmPassword,

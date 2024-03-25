@@ -26,6 +26,10 @@ const Scema = new mongoose.Schema({
         required:true,
         unique:true
     },
+    country:{
+        type:String,
+        required:true,
+    },
     username:{
         type:String,
         required:true

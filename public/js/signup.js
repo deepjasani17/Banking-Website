@@ -22,6 +22,7 @@ function val() {
     const countryData = phoneInput.getSelectedCountryData();
     var country = countryData.name;
     var mobileNumber = document.getElementById('mobileNumber').value.trim();
+    var upiId = mobileNumber + "@dbbank";
     var username = document.getElementById('username').value.trim();
     var password = document.getElementById('password').value.trim();
     var confirmPassword = document.getElementById('confirmPassword').value.trim();
@@ -83,6 +84,23 @@ function val() {
         mobileNumberError.innerHTML = "Mobile number is required ";
         return;
     } 
+    var radios1 = document.getElementsByName("actype");
+    var formValid1 = false;
+    var accountType;
+    var i = 0;
+    while (!formValid1 && i < radios1.length) {
+        if (radios1[i].checked) 
+        {
+            formValid1 = true;
+            accountType = radios1[i].value;
+        }
+        i++;        
+    }
+    if (!formValid1) 
+    {
+        actypeError.innerHTML = "Account type is required ";
+        return;
+    } 
     else if (!isValidMobileNumber()) {
         mobileNumberError.innerHTML = "Invalid mobile number format ";
         return;
@@ -115,7 +133,7 @@ function val() {
           headers: {
             "Content-Type": "application/json",
         },
-        body : JSON.stringify({ firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,country }),
+        body : JSON.stringify({ firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,country,upiId,accountType }),
         })
         .then((r) => {return r.json()})
         .then((data) => {

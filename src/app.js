@@ -1,8 +1,10 @@
 const express = require('express');
+const dotenv = require("dotenv");
 const path = require("path");
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const hbs = require("hbs");
+dotenv.config({path:'./config.env'});
 
 const app = express();
 const port = process.env.PORT || 3000;
@@ -49,7 +51,7 @@ app.use(bodyParser.json());
 
 app.post("/signup" , async (req,res)=>{
     try {
-        const { firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,country } = req.body;
+        const { firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,country,upiId,accountType } = req.body;
         const collections = await Register.find({}).lean();
         for (const collection of collections) {
             if (collection.email === email) {
@@ -62,12 +64,23 @@ app.post("/signup" , async (req,res)=>{
                 return res.json({ txt: 'This username is already taken, try with another!' });
             }
         }
+        var t1='15',t2;
+        if(accountType=="saving"){
+            t2='1';
+        } else{
+            t2='2';
+        }
+        t3 = Math.floor(Math.random() * (9999999 - 1000000)) + 1000000;
         const registeruser = new Register({
             firstname:req.body.firstName,
             lastname:req.body.lastName,
             gender:req.body.gender,
             email:req.body.email,
             phone:req.body.mobileNumber,
+            account_type:req.body.accountType,
+            account_num: t1 + t2 + t3,
+            upiId:req.body.upiId,
+            balance:Math.floor(Math.random() * (100000 - 1000)) + 1000,
             country:req.body.country,
             username:req.body.username,
             password:req.body.password,
@@ -85,6 +98,14 @@ app.post("/login" , async(req,res) => {
     try {
         const { username, password } = req.body;
         const user = await Register.findOne({username});
+        const collections = await Register.find({}).lean();
+        var fname,lname;
+        for (const collection of collections) {
+            if (collection.username === username) {
+                fname = collection.firstname;
+                lname = collection.lastname;
+            }
+        }
         for(var i=0;i<1;i++)
         {
             if (!user) {
@@ -96,6 +117,8 @@ app.post("/login" , async(req,res) => {
             
         }
         req.session.user = user;
+        req.session.fname = fname;
+        req.session.lname = lname;
         res.json({txt:"sucess"})
     } catch (err) {
         console.error(err);
@@ -107,7 +130,17 @@ app.post("/login" , async(req,res) => {
 app.get("/index1" , (req,res) => {
     try {
         const user = req.session.user;
-        res.render("index1", { user });
+        const fname = req.session.fname;
+        const lname = req.session.lname;
+        res.render("index1", { user,fname,lname });
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+app.get("/transfermoney" , (req,res) => {
+    try {
+        res.render("transfermoney");
     } catch (error) {
         console.log(error);
     }

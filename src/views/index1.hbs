@@ -12,7 +12,7 @@
       crossorigin="anonymous"
       referrerpolicy="no-referrer"
     />
-    <link rel="stylesheet" href="css/bank-style.css">
+    <link rel="stylesheet" href="css/index1.css">
 </head>
 <body>
     <!-- ========== Start NAVBAR Section ========== -->
@@ -30,6 +30,7 @@
                     <li class="nav-item"> <a class="nav-link" href="/">Services</a></li>
                     <li class="nav-item"> <a class="nav-link" href="/">FAQs</a></li>
                     <li class="nav-item"> <a class="nav-link" href="/">Contact</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/">Logout</a></li>
                 </ul>
             </nav>
             <div>
@@ -51,10 +52,8 @@
         <div class="section-hero">
           <div class="container grid grid-two--cols">
             <div class="section-hero--content">
-              <p class="hero-subheading">EMPOWERING LIFELONG Learning</p>
-              <h1 class="hero-heading">
-                Unlock Your Potential with DB Bank
-              </h1>
+              <p class="hero-subheading">Welcome,</p>
+              <h1 class="hero-heading">{{fname}} {{lname}}</h1><br>
               <p class="hero-para">
                 DB Bank offers different type of accounts to meet your financial goals and secure your future. Choose from our wide range of deposit products that are specifically designed to keep your unique requirements in mind.
               </p>
@@ -158,17 +157,18 @@
 
       <div class="container grid grid-four--cols">
         
-        
-        <div class="course-div">
-          <div class="icon">
-            <!-- <i class="fa-brands fa-js"></i> -->
-            <i class="fa-solid fa-code"></i>
+        <a href="transfermoney">
+          <div class="course-div">
+            <div class="icon">
+              <!-- <i class="fa-brands fa-js"></i> -->
+              <i class="fa-solid fa-code"></i>
+            </div>
+            <h3 class="section-common--title">Transfer Money</h3>
+            <p>
+              Creating dynamic, interactive web applications for user engagement.
+            </p>
           </div>
-          <h3 class="section-common--title">Transfer Money</h3>
-          <p>
-            Creating dynamic, interactive web applications for user engagement.
-          </p>
-        </div>
+        </a>
 
         <div class="course-div">
           <div class="icon"><i class="fa-solid fa-laptop-code"></i></div>

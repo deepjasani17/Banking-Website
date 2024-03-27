@@ -26,6 +26,24 @@ const Scema = new mongoose.Schema({
         required:true,
         unique:true
     },
+    account_type:{
+        type:String,
+        require:true,
+    },
+    account_num:{
+        type:String,
+        require:true,
+        unique:true,
+    },
+    upiId:{
+        type:String,
+        require:true,
+        unique:true
+    },
+    balance:{
+        type:Number,
+        require:true,
+    },
     country:{
         type:String,
         required:true,

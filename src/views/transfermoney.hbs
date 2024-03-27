@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Money Transfer</title>
+<link rel="stylesheet" href="css/transfermoney.css">
+</head>
+<body>
+<div class="container">
+    <h1>Money Transfer</h1>
+    <div class="form-container">
+        <label for="bank-type">Select Bank Type:</label>
+        <select id="bank-type" onchange="toggleFields()">
+            <option value="same-bank">Same Bank</option>
+            <option value="other-bank">Other Bank</option>
+        </select>
+        <div class="acc-num">
+            <input type="text" id="account-number" placeholder="Enter Account Number">
+        </div>
+        <div class="rec-name">
+            <input type="text" id="recipient-name" placeholder="Enter Recipient Name">
+
+        </div>
+        <div id="other-bank-fields" style="display: none;">
+            <input type="text" id="ifsc-code" placeholder="Enter IFSC Code">
+        </div>
+        <div class="money">
+            <input type="number" id="recipient-name" placeholder="Enter Amount">
+        </div>
+        <button onclick="transferMoney()">Transfer Money</button>
+    </div>
+</div>
+
+<script src="js/transfermoney.js"></script>
+</body>
+</html>

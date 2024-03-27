@@ -3,12 +3,6 @@
     margin: 0;
     padding: 0;
 }
-body{
-    height: 100vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-}
 
 .a {
     width: 100%;
@@ -42,18 +36,21 @@ button {
 button:hover{
     background: rgb(81, 188, 255);
 }
+.outer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .reg {
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
     border: 1px solid #ccc;
-    padding: 10px;
+    padding: 25px;
     width: 360px;
-    margin: 55px;
-
+    margin: 171px;
     border-radius: 5px;
 }
 
-.inreg {
-    padding: 15px;
-}
+
 
 td {
     padding: 0 10px;

@@ -1,17 +1,16 @@
-const express = require('express');
 const dotenv = require("dotenv");
+const express = require('express');
 const path = require("path");
 const bodyParser = require('body-parser');
 const session = require('express-session');
 const hbs = require("hbs");
-dotenv.config({path:'./config.env'});
+dotenv.config({path:'../.env'});
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT ;
 
 require("./db/conn");
 const Register = require("./models/reg");
-const { log } = require('console');
 
 
 const path1 = path.join(__dirname,"../public");

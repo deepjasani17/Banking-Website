@@ -1,5 +1,8 @@
 const mongoose = require('mongoose');
-mongoose.connect("mongodb://0.0.0.0:27017/userdb",{
+const dotenv = require("dotenv");
+dotenv.config({path:'../.env'});
+const path = process.env.DBCONNECT ;
+mongoose.connect(path,{
     useNewUrlParser:true,
     useUnifiedTopology:true
     // useCreateIndex:true

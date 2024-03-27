@@ -7,7 +7,7 @@ const hbs = require("hbs");
 dotenv.config({path:'../.env'});
 
 const app = express();
-const port = process.env.PORT ;
+const port = process.env.PORT;
 
 require("./db/conn");
 const Register = require("./models/reg");

@@ -20,7 +20,6 @@ p, li, a {
     font-size: 1.8rem;
     letter-spacing: 0.1rem;
     font-weight: 400;
-    color: var(--para-color);
     line-height: 1.5;
 }
 a {

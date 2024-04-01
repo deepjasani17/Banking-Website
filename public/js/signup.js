@@ -127,13 +127,13 @@ function val() {
         confirmPasswordError.innerHTML = "Password and Confirm password are not same ";
         return;
     }
-    
+    console.log(upiId);
     fetch('/signup' , {
         method: "POST",
           headers: {
             "Content-Type": "application/json",
         },
-        body : JSON.stringify({ firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,country,upiId,accountType }),
+        body : JSON.stringify({ firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,upiId,country,accountType }),
         })
         .then((r) => {return r.json()})
         .then((data) => {

@@ -4,7 +4,6 @@
     padding: 0;
     margin: 0;
     box-sizing: border-box;
-    font-family: 'Urbanist', sans-serif;
 }
 
 html{
@@ -20,7 +19,7 @@ p, li, a {
     font-size: 1.8rem;
     letter-spacing: 0.1rem;
     font-weight: 400;
-    color:blue;
+    color: var(--para-color);
     line-height: 1.5;
 }
 a {
@@ -58,7 +57,6 @@ li {
 .container {
     max-width: 142rem;
     margin: 0 auto;
-    /* margin-left:1px; */
     padding: 9.6rem 2.4rem;
 }
 
@@ -72,22 +70,6 @@ li {
   )
   .container:first-child {
   padding: 6.4rem 2.4rem 2.4rem 2.4rem;
-}
-
-.grid {
-    display: grid;
-}
-.grid-two--cols {
-    grid-template-columns: repeat(2, 1fr);
-}
-
-.grid-three--cols {
-    grid-template-columns: repeat(3, 1fr);
-}
-
-.grid-four--cols {
-    grid-template-columns: repeat(4, 1fr);
-
 }
 
 /* Module */   /* Reusable */
@@ -138,11 +120,6 @@ li {
     cursor: pointer;
     box-shadow: var(--btn-box-shadow);
 }
-
-
-
-
-
 
 /* Navbar section */
 

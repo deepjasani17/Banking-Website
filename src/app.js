@@ -32,6 +32,15 @@ app.use(session({
     saveUninitialized: true
   }));
 
+var x=0;
+
+const middlware1 = (req,res,next) =>{
+    if(x==1) next();
+    else {
+        res.render("login");
+    }
+}
+
 app.get("/" , (req,res) => {
     res.render("index")
 });
@@ -49,6 +58,10 @@ app.use(bodyParser.json());
 app.post("/signup" , async (req,res)=>{
     try {
         const { firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,country,upiId,accountType } = req.body;
+        console.log(upiId);
+        if (!upiId) {
+            return res.json({ txt: "upiId cannot be null" });
+        }
         const collections = await Register.find({}).lean();
         for (const collection of collections) {
             if (collection.email === email) {
@@ -71,16 +84,16 @@ app.post("/signup" , async (req,res)=>{
         const registeruser = new Register({
             firstname:req.body.firstName,
             lastname:req.body.lastName,
-            gender:req.body.gender,
-            email:req.body.email,
+            gender,
+            email,
             phone:req.body.mobileNumber,
             account_type:req.body.accountType,
             account_num: t1 + t2 + t3,
-            upiId:req.body.upiId,
+            upiId,
             balance:Math.floor(Math.random() * (100000 - 1000)) + 1000,
-            country:req.body.country,
-            username:req.body.username,
-            password:req.body.password,
+            country,
+            username,
+            password,
             confirmpassword:req.body.confirmPassword,
         })
         const data = await registeruser.save();
@@ -130,14 +143,27 @@ app.get("/index1" , (req,res) => {
         const fname = req.session.fname;
         const lname = req.session.lname;
         res.render("index1", { user,fname,lname });
+        x=1;
     } catch (error) {
         console.log(error);
     }
 });
 
-app.get("/transfermoney" , (req,res) => {
+app.get("/transfermoney" ,middlware1, (req,res) => {
     try {
-        res.render("transfermoney");
+        const user = req.session.user;
+        res.render("transfermoney",{user});
+    } catch (error) {
+        console.log(error);
+    }
+});
+
+app.post("/transfermoney" , (req,res) => {
+    try {
+        const {accnum,amount,ifsc} = req.body;
+        const user = req.session.user;
+
+        res.json({txt:"sucess"})
     } catch (error) {
         console.log(error);
     }

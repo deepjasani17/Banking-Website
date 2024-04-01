@@ -7,30 +7,61 @@
 <link rel="stylesheet" href="css/transfermoney.css">
 </head>
 <body>
-    {{>header}}
+<header class="section-navbar">
+        <div class="container">
+            <div class="navbar-brad">
+                <a href="index1">
+                    <img src="picscap-images/bank.jpg" alt="DBop">
+                </a>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li class="nav-item"> <a class="nav-link" href="index1">Home</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/">About</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/">Services</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/">FAQs</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/">Contact</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/">Logout</a></li>
+                </ul>
+            </nav>
+            <div>
+                <ul class="navbar">
+                   <a><center><img src="https://media.istockphoto.com/id/1130884625/vector/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-app-in-circle-design.jpg?s=612x612&w=0&k=20&c=1ky-gNHiS2iyLsUPQkxAtPBWH1BZt0PKBB1WBtxQJRE="alt="Profile" style="height: 30px; "></center></a>
+                   <h2 style="font-size: 1.6rem;">{{user.username}}</h2>
+                </ul>
+            </div>
+        </div>
+        <div>
+        </div>
+    </header>
     <div class="outer">
         <div class="container1">
             <h1>Money Transfer</h1>
             <div class="form-container">
-                <label for="bank-type">Select Bank Type:</label>
-                <select id="bank-type" onchange="toggleFields()">
-                    <option value="same-bank">Same Bank</option>
-                    <option value="other-bank">Other Bank</option>
-                </select>
-                <div class="acc-num">
-                    <input type="text" id="account-number" placeholder="Enter Account Number">
-                </div>
-                <div class="rec-name">
-                    <input type="text" id="recipient-name" placeholder="Enter Recipient Name">
-
-                </div>
-                <div id="other-bank-fields" style="display: none;">
-                    <input type="text" id="ifsc-code" placeholder="Enter IFSC Code">
-                </div>
-                <div class="money">
-                    <input type="number" id="recipient-name" placeholder="Enter Amount">
-                </div>
-                <button onclick="transferMoney()">Transfer Money</button>
+                <form action="/transfermoney" method="post">
+                    <label for="bank-type">Select Bank Type:</label>
+                    <select id="bank-type" onchange="toggleFields()">
+                        <option value="same-bank">Same Bank</option>
+                        <option value="other-bank">Other Bank</option>
+                    </select>
+                    <div class="acc-num">
+                        <input type="text" id="account-number" placeholder="Enter Account Number">
+                        <span id="accountnumberError" class="error"></span>
+                    </div>
+                    <div class="rec-name">
+                        <input type="text" id="recipient-name" placeholder="Enter Recipient Name">
+                        <span id="recipientnameError" class="error"></span>
+                    </div>
+                    <div id="other-bank-fields" style="display: none;">
+                        <input type="text" id="ifsc-code" placeholder="Enter IFSC Code">
+                        <span id="ifsccodeError" class="error"></span>
+                    </div>
+                    <div class="money">
+                        <input type="number" id="amount" placeholder="Enter Amount">
+                        <span id="amountError" class="error"></span>
+                    </div>
+                    <button type="submit" onclick="transferMoney()">Transfer Money</button>
+                </form>
             </div>
         </div>
     </div>

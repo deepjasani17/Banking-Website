@@ -58,10 +58,6 @@ app.use(bodyParser.json());
 app.post("/signup" , async (req,res)=>{
     try {
         const { firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,country,upiId,accountType } = req.body;
-        console.log(upiId);
-        if (!upiId) {
-            return res.json({ txt: "upiId cannot be null" });
-        }
         const collections = await Register.find({}).lean();
         for (const collection of collections) {
             if (collection.email === email) {
@@ -87,10 +83,12 @@ app.post("/signup" , async (req,res)=>{
             gender,
             email,
             phone:req.body.mobileNumber,
-            account_type:req.body.accountType,
-            account_num: t1 + t2 + t3,
-            upiId,
-            balance:Math.floor(Math.random() * (100000 - 1000)) + 1000,
+            bank:{
+                account_type:req.body.accountType,
+                account_num: t1 + t2 + t3,
+                upiId,
+                balance:Math.floor(Math.random() * (100000 - 1000)) + 1000,
+            },
             country,
             username,
             password,

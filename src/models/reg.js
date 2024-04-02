@@ -23,7 +23,7 @@ const Scema = new mongoose.Schema({
         required:true,
         unique:true
     },
-    // bank:{
+    bank:{
         account_type:{
             type:String,
             require:true,
@@ -41,15 +41,17 @@ const Scema = new mongoose.Schema({
         balance:{
             type:Number,
             require:true,
-        },
-    // },
+        }
+    },
+
     country:{
         type:String,
         required:true,
     },
     username:{
         type:String,
-        required:true
+        required:true,
+        unique:true
     },
     password:{
         type:String,

@@ -33,6 +33,11 @@ const Scema = new mongoose.Schema({
             require:true,
             unique:true,
         },
+        ifsc_code:{
+            type:String,
+            require:true,
+            unique:true,
+        },
         upiId:{
             type:String,
             require:true,
@@ -60,6 +65,9 @@ const Scema = new mongoose.Schema({
     confirmpassword:{
         type:String,
         required:true
+    },
+    varifide:{
+        type:Boolean
     }
 })
 

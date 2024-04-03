@@ -23,51 +23,62 @@
 				<h4 style="font-family:Amazon Ember, Arial, sans-serif;font-weight: 100;">First name</h4>
 				<input type="text" id="firstName" name="firstName" class="in">
 				<br><span id="firstNameError" class="error"></span>
-			</div>
+			</div><br>
 			<div>
 				<h4 style="font-family:Amazon Ember, Arial, sans-serif;font-weight: 100;">Last name</h4>
 				<input type="text" id="lastName" name="lastName" class="in">
 				<span id="lastNameError" class="error"></span>
-			</div>
+			</div><br>
 			<div>
 				<h4 style="font-family:Amazon Ember, Arial, sans-serif;font-weight: 100;">Gender</h4><br>
 				<input type="radio" id="gender1" name="gender" value="male"> Male <input type="radio" id="gender2" name="gender" value="female"> Female <input type="radio" id="gender3" name="gender" value="other"> Other
 				<br><span id="genderError" class="error"></span>
-			</div>
-			<br>
+			</div><br>
 			<div>
 				<h4 style="font-family:Amazon Ember, Arial, sans-serif;font-weight: 100;">Email</h4>
 				<input type="email" id="email" name="email" class="in">
 				<span id="emailError" class="error"></span>
-			</div>
+			</div><br>
 			<div>
 				<h4 style="font-family:Amazon Ember, Arial, sans-serif;font-weight: 100;margin-bottom: 7px;">Mobile number</h4>
 				<input id="mobileNumber" type="tel" name="mobileNumber" class="in" style="width: 309px;" />
 				<span id="mobileNumberError" class="error"></span>
-			</div>
-			<br>
+			</div><br>
+			<h4 style="font-family:Amazon Ember, Arial, sans-serif;font-weight: 100;">Select Branch</h4>
+			<div class="custom-select">
+				<select id="branch-type" class="branch-type">
+					<option value="0">Select</option>
+					<option value="1">Ahmedabad</option>
+					<option value="2">Bangalore</option>
+					<option value="3">Pune</option>
+					<option value="4">Jaipur</option>
+					<option value="5">Surat</option>
+					<option value="6">Chennai</option>
+					<option value="7">Kolkata</option>
+					<option value="8">Mumbai</option>
+				</select>
+				<span id="branchError" class="error"></span>
+			</div><br>
 			<div>
 				<h4 style="font-family:Amazon Ember, Arial, sans-serif;font-weight: 100;">Account type</h4><br>
 				<input type="radio" id="ac1" name="actype" value="saving"> Saving <input type="radio" id="ac2" name="actype" value="current"> Current 
 				<br><span id="actypeError" class="error"></span>
-			</div>
-			<br>
+			</div><br>
 			<div>
 				<h4 style="font-family:Amazon Ember, Arial, sans-serif;font-weight: 100;margin-top: 7px;">User name</h4>
 				<input type="text" id="username" name="username" value="" class="in">
 				<span id="usernameError" class="error"></span>
-			</div>
+			</div><br>
 			<div>
 				<h4 style="font-family:Amazon Ember, Arial, sans-serif;font-weight: 100;">Password (Minimum 8 character) </h4>
 				<input type="password" id="password" name="password" value="" class="in"><i class="far fa-eye" id="togglePassword" style="margin-left: -30px;cursor: pointer"  onclick="showpas()"></i>	
 				<span id="passwordError" class="error"></span>
-			</div>
+			</div><br>
 			<div>
 				<h4 style="font-family:Amazon Ember, Arial, sans-serif;font-weight: 100;">Confirm password</h4>
 				<input type="password" id="confirmPassword" name="confirmPassword" value="" class="in">
 				<span id="confirmPasswordError" class="error"></span>
-			</div>
-			<br>
+			</div><br>
 			<center><button type="submit" onclick="val()">Sign up</button></center>
 			</form>
 		</div>

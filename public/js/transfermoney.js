@@ -14,7 +14,8 @@ function toggleFields() {
 function transferMoney() {
     event.preventDefault();
     var accnum=document.getElementById("account-number").value.trim();
-    var recpnum=document.getElementById("recipient-name").value.trim();
+    var recpname=document.getElementById("recipient-name").value.trim();
+    recpname.toLowerCase();
     var amount=document.getElementById("amount");
     var ifsc=document.getElementById("ifsc-code").value.trim();
     var accountnumberError=document.getElementById("accountnumberError");
@@ -26,9 +27,6 @@ function transferMoney() {
     ifsccodeError.innerHTML = "";
     amountError.innerHTML = "";
     const mon=Number(amount.value);
-    if(mon == 0){
-        console.log(mon);
-    }
     if(accnum==="")
     {
         accountnumberError.innerHTML = "Account number is requird";
@@ -40,7 +38,7 @@ function transferMoney() {
             return;
         }
     }
-    if(recpnum==="")
+    if(recpname==="")
     {
         recipientnameError.innerHTML = "Recipirnt number is requird";
         return;
@@ -61,11 +59,11 @@ function transferMoney() {
           headers: {
             "Content-Type": "application/json",
         },
-        body : JSON.stringify({accnum,amount,ifsc}),
+        body : JSON.stringify({accnum,mon,ifsc,recpname}),
         })
         .then((r) => {return r.json()})
         .then((data) => {
-            console.log(data);
+            alert(data.txt)
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);

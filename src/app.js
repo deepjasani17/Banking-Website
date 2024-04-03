@@ -53,11 +53,16 @@ app.get("/login" , (req,res) => {
     res.render("login");
 });
 
+app.get("/logout" , (req,res) => {
+    x=0;
+    res.redirect("/"); 
+});
+
 app.use(bodyParser.json());
 
 app.post("/signup" , async (req,res)=>{
     try {
-        const { firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,country,upiId,accountType } = req.body;
+        const { firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,country,upiId,accountType,ifscCode } = req.body;
         const collections = await Register.find({}).lean();
         for (const collection of collections) {
             if (collection.email === email) {
@@ -86,6 +91,7 @@ app.post("/signup" , async (req,res)=>{
             bank:{
                 account_type:req.body.accountType,
                 account_num: t1 + t2 + t3,
+                ifsc_code:req.body.ifscCode,
                 upiId,
                 balance:Math.floor(Math.random() * (100000 - 1000)) + 1000,
             },
@@ -93,6 +99,7 @@ app.post("/signup" , async (req,res)=>{
             username,
             password,
             confirmpassword:req.body.confirmPassword,
+            varifide:false,
         })
         const data = await registeruser.save();
         res.json({txt:'Sign up succesfull, Try to log in now'});
@@ -101,7 +108,6 @@ app.post("/signup" , async (req,res)=>{
         res.json({txt:"Internal server error"})
     }
 })
-
 app.post("/login" , async(req,res) => {
     try {
         const { username, password } = req.body;
@@ -156,14 +162,38 @@ app.get("/transfermoney" ,middlware1, (req,res) => {
     }
 });
 
-app.post("/transfermoney" , (req,res) => {
+app.post("/transfermoney" ,async (req,res) => {
     try {
-        const {accnum,amount,ifsc} = req.body;
+        const {accnum,mon,ifsc,recpname} = req.body;
         const user = req.session.user;
-
-        res.json({txt:"sucess"})
+        var user2;
+        const balance1 = user.bank.balance;
+        const collections = await Register.find({}).lean();
+        var x=0;
+        for (const collection of collections) {
+            if (collection.bank.account_num === accnum && collection.firstname + " " + collection.lastname === recpname) {
+                x=1;
+                user2=collection;
+                break;
+            }
+        }
+        if(x==0){
+            return res.json({txt:"Enter valid details"})
+        }
+        if(mon>balance1){
+            return res.json({txt:"Insufficient Balance"})
+        }
+        const balance2 = user2.bank.balance;
+        const userId1 = req.session.user._id; 
+        const userId2 = user2._id
+        const newBalance1 = balance1 - mon; 
+        const newBalance2 = balance2 + mon;
+        const updatedUser1 = await Register.findByIdAndUpdate(userId1, { $set: { 'bank.balance': newBalance1 } }, { new: true });
+        const updatedUser2 = await Register.findByIdAndUpdate(userId2, { $set: { 'bank.balance': newBalance2 } }, { new: true });
+        res.json({txt:"Transection sucessfull"})
     } catch (error) {
         console.log(error);
+        res.json({txt:"Internal server error"})
     }
 });
 

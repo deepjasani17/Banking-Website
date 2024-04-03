@@ -17,12 +17,23 @@ function showpas() {
 function val() {
     event.preventDefault();
     var firstName = document.getElementById('firstName').value.trim();
+    firstName.toLowerCase();
     var lastName = document.getElementById('lastName').value.trim();
+    lastName.toLowerCase();
     var email = document.getElementById('email').value.trim();
     const countryData = phoneInput.getSelectedCountryData();
     var country = countryData.name;
     var mobileNumber = document.getElementById('mobileNumber').value.trim();
     var upiId = mobileNumber + "@dbbank";
+    var branch = document.getElementById('branch-type').value.trim();
+    var ifscCode ;
+    var india = "045";
+    var dubai = "046";
+    var aus = "047";
+    var japan = "048";
+    var germany = "049";
+    var usa = "044";
+    ifscCode = "DBIN00" + branch + india;
     var username = document.getElementById('username').value.trim();
     var password = document.getElementById('password').value.trim();
     var confirmPassword = document.getElementById('confirmPassword').value.trim();
@@ -31,6 +42,7 @@ function val() {
     var genderError = document.getElementById('genderError');
     var emailError = document.getElementById('emailError');
     var mobileNumberError = document.getElementById('mobileNumberError');
+    var branchError = document.getElementById('branchError');
     var usernameError = document.getElementById('usernameError');
     var passwordError = document.getElementById('passwordError');
     var confirmPasswordError = document.getElementById('confirmPasswordError');
@@ -39,6 +51,7 @@ function val() {
     genderError.innerHTML = "";
     emailError.innerHTML = "";
     mobileNumberError.innerHTML = "";
+    branchError.innerHTML = "";
     usernameError.innerHTML = "";
     passwordError.innerHTML = "";
     confirmPasswordError.innerHTML = "";
@@ -84,6 +97,10 @@ function val() {
         mobileNumberError.innerHTML = "Mobile number is required ";
         return;
     } 
+    if(branch==="0"){
+        branchError.innerHTML = "Branch is required";
+        return;
+    }
     var radios1 = document.getElementsByName("actype");
     var formValid1 = false;
     var accountType;
@@ -127,13 +144,12 @@ function val() {
         confirmPasswordError.innerHTML = "Password and Confirm password are not same ";
         return;
     }
-    console.log(upiId);
     fetch('/signup' , {
         method: "POST",
           headers: {
             "Content-Type": "application/json",
         },
-        body : JSON.stringify({ firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,upiId,country,accountType }),
+        body : JSON.stringify({ firstName,lastName,gender,email,mobileNumber,username,password,confirmPassword,upiId,country,accountType,ifscCode }),
         })
         .then((r) => {return r.json()})
         .then((data) => {

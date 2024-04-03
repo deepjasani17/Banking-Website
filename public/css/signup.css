@@ -235,3 +235,18 @@ button:hover{
 .error{
     color: red;
 }
+
+.branch-type{
+    width: 100%;
+    padding: 9px;
+    margin: 7px 0;
+    box-sizing: border-box;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+    font-size:2rem;
+    outline: none;
+}
+
+option{
+    font-size:2.1rem;
+}

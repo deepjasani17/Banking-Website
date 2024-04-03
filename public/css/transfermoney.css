@@ -234,3 +234,7 @@ button:hover {
 .error{
     color: red;
 }
+
+option{
+    font-size:1.9rem;
+}

@@ -16,7 +16,6 @@ const Register = require("./models/reg");
 const path1 = path.join(__dirname,"../public");
 const path2 = path.join(__dirname,"/views");
 const path3 = path.join(__dirname,"/partials");
-console.log(__dirname);
 app.use(express.json());
 app.use(express.urlencoded({extended:false}));
 

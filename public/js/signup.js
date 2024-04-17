@@ -16,10 +16,8 @@ function showpas() {
 
 function val() {
     event.preventDefault();
-    var firstName = document.getElementById('firstName').value.trim();
-    firstName.toLowerCase();
-    var lastName = document.getElementById('lastName').value.trim();
-    lastName.toLowerCase();
+    var firstName = document.getElementById('firstName').value.trim().toLowerCase();
+    var lastName = document.getElementById('lastName').value.trim().toLowerCase();
     var email = document.getElementById('email').value.trim();
     const countryData = phoneInput.getSelectedCountryData();
     var country = countryData.name;

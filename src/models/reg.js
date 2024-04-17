@@ -36,7 +36,6 @@ const Scema = new mongoose.Schema({
         ifsc_code:{
             type:String,
             require:true,
-            unique:true,
         },
         upiId:{
             type:String,

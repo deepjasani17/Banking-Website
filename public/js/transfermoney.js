@@ -14,7 +14,7 @@ function toggleFields() {
 function transferMoney() {
     event.preventDefault();
     var accnum=document.getElementById("account-number").value.trim();
-    var recpname=document.getElementById("recipient-name").value.trim();
+    var recpname=document.getElementById("recipient-name").value.trim().toLowerCase();
     recpname.toLowerCase();
     var amount=document.getElementById("amount");
     var ifsc=document.getElementById("ifsc-code").value.trim();

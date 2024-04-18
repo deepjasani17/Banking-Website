@@ -57,6 +57,11 @@ app.get("/logout" , (req,res) => {
     res.redirect("/"); 
 });
 
+app.get("/userdata",(req,res) =>{
+    const user = req.session.user;
+    res.render("userdata",{user});
+});
+
 app.use(bodyParser.json());
 
 app.post("/signup" , async (req,res)=>{

@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Details</title>
+    <link rel="stylesheet" href="css/userdata.css">
+</head>
+<body>
+    <!-- ========== Start NAVBAR Section ========== -->
+    <header class="section-navbar">
+        <div class="container">
+            <div class="navbar-brad">
+                <a href="index1">
+                    <img src="picscap-images/bank.jpg" alt="DBop">
+                </a>
+            </div>
+            <nav class="navbar">
+                <ul>
+                    <li class="nav-item"> <a class="nav-link" href="index1">Home</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/">About</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/">Services</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/">FAQs</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/">Contact</a></li>
+                    <li class="nav-item"> <a class="nav-link" href="/logout">Logout</a></li>
+                </ul>
+            </nav>
+            <a href="/userdata">
+              <div>
+                  <ul class="navbar">
+                    <center><img src="https://media.istockphoto.com/id/1130884625/vector/user-member-vector-icon-for-ui-user-interface-or-profile-face-avatar-app-in-circle-design.jpg?s=612x612&w=0&k=20&c=1ky-gNHiS2iyLsUPQkxAtPBWH1BZt0PKBB1WBtxQJRE="alt="Profile" style="height: 30px; "></center>
+                    <h2 style="font-size: 1.6rem;">{{user.username}}</h2>
+                  </ul>
+              </div>
+            </a>
+        </div>
+        <div>
+        </div>
+    </header>
+    <!-- ========== End NAVBAR Section ========== -->
+
+    <div class="outer">
+        <div class="container1">
+            <center><h2>User Details</h2></center>
+            <br>
+            <div class="user-details">
+                <div class="detail">
+                    <label for="username">Username:</label>
+                    <span id="username">{{user.username}}</span>
+                </div>
+                <div class="detail">
+                    <label for="name">Name:</label>
+                    <span id="name">{{user.firstname}} {{user.lastname}}</span>
+                </div>
+                <div class="detail">
+                    <label for="email">Email:</label>
+                    <span id="email">{{user.email}}</span>
+                </div>
+                <div class="detail">
+                    <label for="phoneNumber">Phone Number:</label>
+                    <span id="phoneNumber">{{user.phone}}</span>
+                </div>
+                <div class="detail">
+                    <label for="accountNumber">Account Number:</label>
+                    <span id="accountNumber">{{user.bank.account_num}}</span>
+                </div>
+                <div class="detail">
+                    <label for="accountType">Account Type:</label>
+                    <span id="accountType">{{user.bank.account_type}}</span>
+                </div>
+                <div class="detail">
+                    <label for="ifscCode">IFSC Code:</label>
+                    <span id="ifscCode">{{user.bank.ifsc_code}}</span>
+                </div>
+                <div class="detail">
+                    <label for="upiID">UPI ID:</label>
+                    <span id="upiID">{{user.bank.upiId}}</span>
+                </div>
+                <div class="detail">
+                    <label for="balance">Balance:</label>
+                    <span id="balance">₹{{user.bank.balance}}</span>
+                </div>
+            </div>
+            <br>
+            <div>
+                <center><button>Edit</button></center>
+            </div>
+        </div>
+    </div>
+    <script src="js/userdata.js"></script>
+</body>
+</html>

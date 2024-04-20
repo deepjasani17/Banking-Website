@@ -234,6 +234,7 @@ app.get("/userdata",(req,res) =>{
 app.get("/thistory",async(req,res) =>{
     const user = req.session.user;
     const transactions = await TransectionHistory.find({ username: user.username }).lean();
+    transactions.reverse();
     var balance;   
     if(t==1) balance = req.session.newbalance;
     else balance = user.bank.balance;

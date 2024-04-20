@@ -11,7 +11,7 @@ const port = process.env.PORT;
 
 require("./db/conn");
 const Register = require("./models/reg");
-
+const TransectionHistory = require("./models/thistory");
 
 const path1 = path.join(__dirname,"../public");
 const path2 = path.join(__dirname,"/views");
@@ -54,12 +54,8 @@ app.get("/login" , (req,res) => {
 
 app.get("/logout" , (req,res) => {
     x=0;
+    t=0;
     res.redirect("/"); 
-});
-
-app.get("/userdata",(req,res) =>{
-    const user = req.session.user;
-    res.render("userdata",{user});
 });
 
 app.use(bodyParser.json());
@@ -166,8 +162,10 @@ app.get("/transfermoney" ,middlware1, (req,res) => {
     }
 });
 
+var t=0;
 app.post("/transfermoney" ,async (req,res) => {
     try {
+        t=1;
         const {accnum,mon,ifsc,recpname} = req.body;
         const user = req.session.user;
         var user2;
@@ -189,16 +187,57 @@ app.post("/transfermoney" ,async (req,res) => {
         }
         const balance2 = user2.bank.balance;
         const userId1 = req.session.user._id; 
-        const userId2 = user2._id
+        const userId2 = user2._id;
         const newBalance1 = balance1 - mon; 
         const newBalance2 = balance2 + mon;
         const updatedUser1 = await Register.findByIdAndUpdate(userId1, { $set: { 'bank.balance': newBalance1 } }, { new: true });
         const updatedUser2 = await Register.findByIdAndUpdate(userId2, { $set: { 'bank.balance': newBalance2 } }, { new: true });
+        var today = new Date();
+        var dd = String(today.getDate()).padStart(2, '0');
+        var mm = String(today.getMonth() + 1).padStart(2, '0'); 
+        var yyyy = today.getFullYear();
+        today = dd + '/' + mm + '/' + yyyy;
+        const transectionhistory1 = new TransectionHistory ({
+            username: user.username,
+            date: today,
+            to: "To " + req.body.recpname,
+            accnum:req.body.accnum,
+            amount: -mon,
+            balance:newBalance1,
+        })
+        const data1 = await transectionhistory1.save();
+        const transectionhistory2 = new TransectionHistory ({
+            username:user2.username,
+            date: today,
+            from: "From "+ user.firstname + " " + user.lastname,
+            acnum:user.bank.account_num,
+            amount: +mon,
+            balance:newBalance2,
+        })
+        const data2 = await transectionhistory2.save();
+        req.session.newbalance = newBalance1;
         res.json({txt:"Transection sucessfull"})
     } catch (error) {
         console.log(error);
         res.json({txt:"Internal server error"})
     }
+});
+
+app.get("/userdata",(req,res) =>{
+    const user = req.session.user;
+    var balance;
+    if(t==1) balance = req.session.newbalance;
+    else balance = user.bank.balance;
+    res.render("userdata",{user,balance});
+});
+
+app.get("/thistory",async(req,res) =>{
+    const user = req.session.user;
+    const transactions = await TransectionHistory.find({ username: user.username }).lean();
+    var balance;   
+    if(t==1) balance = req.session.newbalance;
+    else balance = user.bank.balance;
+    res.render("TransectionHistory",{user,balance,transactions});
 });
 
 app.listen(port, () =>{

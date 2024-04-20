@@ -49,6 +49,10 @@
                     <span id="username">{{user.username}}</span>
                 </div>
                 <div class="detail">
+                    <label for="username">Password:</label>
+                    <span id="username">{{user.password}}</span>
+                </div>
+                <div class="detail">
                     <label for="name">Name:</label>
                     <span id="name">{{user.firstname}} {{user.lastname}}</span>
                 </div>
@@ -57,7 +61,7 @@
                     <span id="email">{{user.email}}</span>
                 </div>
                 <div class="detail">
-                    <label for="phoneNumber">Phone Number:</label>
+                    <label for="phoneNumber">Mobile Number:</label>
                     <span id="phoneNumber">{{user.phone}}</span>
                 </div>
                 <div class="detail">
@@ -78,13 +82,13 @@
                 </div>
                 <div class="detail">
                     <label for="balance">Balance:</label>
-                    <span id="balance">₹{{user.bank.balance}}</span>
+                    <span id="balance">₹{{balance}}</span>
                 </div>
             </div>
             <br>
-            <div>
-                <center><button>Edit</button></center>
-            </div>
+            <center>
+                <button onclick="rend()">View Transection</button>
+            </center>
         </div>
     </div>
     <script src="js/userdata.js"></script>

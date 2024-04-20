@@ -64,6 +64,8 @@ function transferMoney() {
         .then((r) => {return r.json()})
         .then((data) => {
             alert(data.txt)
+            window.location.reload();
+            
         })
         .catch(error => {
             console.error('There was a problem with the fetch operation:', error);

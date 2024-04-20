@@ -70,6 +70,8 @@ const Scema = new mongoose.Schema({
     }
 })
 
+
+
 const Register = new mongoose.model("Register", Scema)
 
 module.exports = Register;

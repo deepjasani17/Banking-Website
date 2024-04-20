@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Transaction History</title>
+<link rel="stylesheet" href="css/TransectionHistory.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>Transaction History</h2>
+    <h3>Name : {{user.firstname}} {{user.lastname}}</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Description</th>
+                <th>Amount (₹)</th>
+            </tr>
+        </thead>
+        <tbody>
+            {{#each transactions}}
+            <tr class="even">
+                <td>{{this.date}}</td>
+                <td>{{this.from}}{{this.to}}</td>
+                <td>{{this.amount}}</td>
+            </tr>
+            {{/each}}
+        </tbody>
+    </table>
+    <h3>Balance : {{balance}}</h3>
+</div>
+
+</body>
+</html>

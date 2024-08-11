@@ -47,7 +47,7 @@ This is a banking website built with Node.js and MongoDB. It allows users to reg
 5. Start the application:
    ```bash
    npm start
-6. Open your browser and visit `http://localhost:3000`.
+6. Open your browser and visit `http://localhost:PORT`.
 
 ## Usage
 

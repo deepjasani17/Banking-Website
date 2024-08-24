@@ -2,7 +2,7 @@
 
 ## Overview
 
-This is a banking website built with Node.js and MongoDB. It allows users to register, log in, transfer money,user credentials, and view their transaction history.
+This is a banking website built with Node.js and MongoDB. It allows users to register, log in, transfer money, see their user credentials and transaction history.
 
 ## Technology Stack
 
